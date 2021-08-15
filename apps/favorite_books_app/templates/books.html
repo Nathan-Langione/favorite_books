@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login and Registration</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    </head>
+    <body>
+        <div class =top>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            <h1>Welcome, {{this_user.first_name}}!</h1>
+            <form action="/logout" method="post">
+                {% csrf_token %}
+                <button type="submit">logout</button>
+            </form>
+        </div>
+        <hr>
+        <div>
+            <h1> Add a Favorite Book</h1>
+            <form action="/books/create" method="post">
+                {% csrf_token %}
+                <p>
+                    Title: <input name="title" type="text">
+                </p>
+                <p>
+                    Description: <input name="description" type="text">
+                </p>
+                <button type="submit">add</button>
+            </form>
+            <h1>All Books</h1>
+                {% for book in all_books %}
+                    <p><a href="/books/{{book.id}}">{{book.title}}</a></p>
+                    <p>(Added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</p>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+
+    </body>
+
+

@@ -1,0 +1,11 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    justify-content: space-evenly;
+    width: 900px;
+    height: 900px;
+    margin: auto;
+}
+

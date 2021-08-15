@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{this_book.title}}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    </head>
+    <body>
+        <div class =top>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            <h1>Welcome, {{this_user.first_name}}!</h1>
+            <form action="/logout" method="post">
+                {% csrf_token %}
+                <button type="submit">logout</button>
+            </form>
+        </div>
+        <hr>
+        <div class =main>
+            <div>
+                <h1>{{this_book.title}}</h1>
+                <p>Added by: {{this_book.uploaded_by.first_name}}</p>
+                <p>Added on: {{this_book.created_at}}</p>
+                <p>Last updated on: {{this_book.updated_at}}</p>
+                <p>Description: {{this_book.description}}</p>
+            </div>
+            <div>
+                <h1>Users that like this book</h1>
+                <ul>
+                    {% for user in fav_users %}
+                    <li>{{user.first_name}} {{user.last_name}}</li>
+                    {% endfor %}
+                </ul>
+                </div>
+                {% if this_user.id not in fav_users.id %}
+                <form action="/books/{{this_book.id}}/favorite" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Favorite</button>
+                </form>
+                {% else %}
+                <form action="/books/{{this_book.id}}/unfavorite" method="post">
+                    {% csrf_token %}
+                    <button type="submit">un-Favorite</button>
+                </form>
+                {% endif %}
+            </div>
+    </body>
+
+
