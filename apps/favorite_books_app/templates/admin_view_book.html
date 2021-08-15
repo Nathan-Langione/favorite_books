@@ -15,32 +15,39 @@
             {% endfor %}
             </ul>
             {% endif %}
-            <h1>Welcome, {{this_user.first_name}}!</h1>
-            <form action="/logout" method="post">
-                {% csrf_token %}
-                <button type="submit">logout</button>
-            </form>
-        </div>
-        <hr>
-        <div class =main>
+            <div ><h1>Welcome, {{this_user.first_name}}!</h1></div>
             <div>
-                <form action="/books/{{this_book.id}}/update" method="post">
+                <form action="/logout" method="post">
                     {% csrf_token %}
-                    <p>
-                        <input name="title" type="text" value="{{this_book.title}}">
-                    </p>
-                    <p>Added by: {{this_book.uploaded_by.first_name}}</p>
-                    <p>Added on: {{this_book.created_at}}</p>
-                    <p>Last updated on: {{this_book.updated_at}}</p>
-                    <p>
-                        Description: <input name="description" type="text" value="{{this_book.description}}">
-                    </p>
-                    <button type="submit">Update</button>
+                    <button type="submit">logout</button>
                 </form>
+            </div>
+        </div>
+
+        <hr>
+        <div class =container>
+            <div>
+                <div>
+                    <form action="/books/{{this_book.id}}/update" method="post">
+                        {% csrf_token %}
+                        <p>
+                            <input name="title" type="text" value="{{this_book.title}}">
+                        </p>
+                        <p>Added by: {{this_book.uploaded_by.first_name}}</p>
+                        <p>Added on: {{this_book.created_at}}</p>
+                        <p>Last updated on: {{this_book.updated_at}}</p>
+                        <p>
+                            Description: <input name="description" type="text" value="{{this_book.description}}">
+                        </p>
+                        <button type="submit">Update</button>
+                    </form>
+            </div>
+            <div>
                 <form action="/books/{{this_book.id}}/delete" method="post">
                     {% csrf_token %}
                     <button type="submit">Delete</Delete>
                 </form>
+            </div>
             </div>
             <div>
                 <h1>Users that like this book</h1>
@@ -49,12 +56,12 @@
                     <li>{{user.first_name}} {{user.last_name}}</li>
                     {% endfor %}
                 </ul>
+                {% if this_user  in fav_users %}
+                <a href="/books/{{this_book.id}}/unfavorite" role="button" class="btn btn-danger">Remove From Favorites</a>
+                {% else %}
+                <a href="/books/{{this_book.id}}/favorite" role="button" class="btn btn-warning">Add to Favorites</a>
+                {% endif %}
                 </div>
-                <form action="/books/{{this_book.id}}/unfavorite" method="post">
-                    {% csrf_token %}
-                    <label >Un-Favorite</label>
-                    <button type="submit">Unfavorite</button>
-                </form>
             </div>
     </body>
 

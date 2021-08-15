@@ -15,35 +15,42 @@
             {% endfor %}
             </ul>
             {% endif %}
-            <h1>Welcome, {{this_user.first_name}}!</h1>
-            <form action="/logout" method="post">
-                {% csrf_token %}
-                <button type="submit">logout</button>
-            </form>
-        </div>
-        <hr>
-        <div>
-            <h1> Add a Favorite Book</h1>
-            <form action="/books/create" method="post">
-                {% csrf_token %}
-                <p>
-                    Title: <input name="title" type="text">
-                </p>
-                <p>
-                    Description: <input name="description" type="text">
-                </p>
-                <button type="submit">add</button>
-            </form>
-            <h1>All Books</h1>
-                {% for book in all_books %}
-                    <p><a href="/books/{{book.id}}">{{book.title}}</a></p>
-                    <p>(Added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</p>
-                    </td>
-                    {% endfor %}
-                </tr>
-            </table>
+            <div ><h1>Welcome, {{this_user.first_name}}!</h1></div>
+            <div>
+                <form action="/logout" method="post">
+                    {% csrf_token %}
+                    <button type="submit">logout</button>
+                </form>
+            </div>
         </div>
 
+        <hr>
+
+        <div class="container">
+            <div>
+                <h1> Add a Favorite Book</h1>
+                <form action="/books/create" method="post">
+                    {% csrf_token %}
+                    <p>
+                        Title: <input name="title" type="text">
+                    </p>
+                    <p>
+                        Description: <input name="description" type="text">
+                    </p>
+                    <button type="submit">add</button>
+                </form>
+            </div>
+            <div>
+                <h1>All Books</h1>
+                    {% for book in all_books %}
+                        <p><a href="/books/{{book.id}}">{{book.title}}</a></p>
+                        <p>(Added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</p>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+        </div>
     </body>
 
 

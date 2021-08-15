@@ -5,6 +5,11 @@ from .models import *
 
 # Create your views here.
 def books(request):
+    try:
+        if len(User.objects.filter(id=request.session['userid'])) > 0:
+            pass
+    except:
+        return redirect("/")
     one_user = User.objects.get(id=request.session['userid'])
     context = {
         "this_user": one_user,
@@ -37,8 +42,14 @@ def create_book(request):
             return redirect(f"/books/{new_book.id}")
 
 def view_book(request, book_id):
+    try:
+        if len(User.objects.filter(id=request.session['userid'])) > 0:
+            pass
+    except:
+        return redirect("/")
+
     one_book = Book.objects.get(id=book_id)
-    one_user = User.objects.get(id=request.session['userid'])
+    one_user = User.objects.filter(id=request.session['userid'])[0]
     context = {
         'this_book': one_book,
         'fav_users': one_book.users_who_like.all(),

@@ -22,7 +22,7 @@
             </form>
         </div>
         <hr>
-        <div class =main>
+        <div class =container>
             <div>
                 <h1>{{this_book.title}}</h1>
                 <p>Added by: {{this_book.uploaded_by.first_name}}</p>
@@ -37,12 +37,12 @@
                     <li>{{user.first_name}} {{user.last_name}}</li>
                     {% endfor %}
                 </ul>
-                </div>
                 {% if this_user  in fav_users %}
                 <a href="/books/{{this_book.id}}/unfavorite" role="button" class="btn btn-danger">Remove From Favorites</a>
                 {% else %}
                 <a href="/books/{{this_book.id}}/favorite" role="button" class="btn btn-warning">Add to Favorites</a>
                 {% endif %}
+                </div>
             </div>
     </body>
 

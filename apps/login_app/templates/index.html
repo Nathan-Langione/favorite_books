@@ -7,50 +7,52 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">    
     </head>
     <body>
-        <div id="registration">
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-            <h1> Registration</h1>
-            <form action="/register" method="post">
-                {% csrf_token %}
-                <p>
-                    First Name: <input name="first_name" type="text">
-                </p>
-                <p>
-                    Last Name: <input name="last_name" type="text">
-                </p>
-                <p>
-                    Email <input name="email" type="text">
-                </p>
-                <p>
-                    Birthday: <input name="birth_date" type="date">
-                </p>
-                <p>
-                    Password: <input name="password" type="password">
-                </p>
-                <p>
-                    Confirm PW: <input name="password_conf" type="password">
-                </p>
-                <button type="submit">Register</button>
-            </form>
-        </div>
-        <div id="login">
-            <h1> Login</h1>
-            <form action="/login" method="post">
-                {% csrf_token %}
-                <p>
-                    Email: <input name="email" type="text">
-                </p>
-                <p>
-                    Password: <input name="password" type="password">
-                </p>
-                <button type="submit">Log In</button>
-            </form>
+        <div class="container">
+            <div id="registration">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+                <h1> Registration</h1>
+                <form action="/register" method="post">
+                    {% csrf_token %}
+                    <p>
+                        First Name: <input name="first_name" type="text">
+                    </p>
+                    <p>
+                        Last Name: <input name="last_name" type="text">
+                    </p>
+                    <p>
+                        Email <input name="email" type="text">
+                    </p>
+                    <p>
+                        Birthday: <input name="birth_date" type="date">
+                    </p>
+                    <p>
+                        Password: <input name="password" type="password">
+                    </p>
+                    <p>
+                        Confirm PW: <input name="password_conf" type="password">
+                    </p>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            <div id="login">
+                <h1> Login</h1>
+                <form action="/login" method="post">
+                    {% csrf_token %}
+                    <p>
+                        Email: <input name="email" type="text">
+                    </p>
+                    <p>
+                        Password: <input name="password" type="password">
+                    </p>
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
         </div>
     </body>
 

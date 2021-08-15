@@ -2,10 +2,34 @@
 body{
     display: flex;
     flex-direction: column;
-    align-items: top;
-    justify-content: space-evenly;
+    align-items: center;
     width: 900px;
-    height: 900px;
     margin: auto;
 }
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
 
+
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 900px;
+    justify-content: space-evenly;
+}
+
+p{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+hr{
+    width: 900px;
+    border:2px solid black;
+    border-radius: 25%;
+}
