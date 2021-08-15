@@ -67,16 +67,14 @@ def update_book(request, book_id):
     return redirect(f"/books/{book_id}")
 
 def favorite_book(request, book_id):
-    if request.method=="POST":
-            #specify book
-            one_user = User.objects.get(id=request.session['userid'])
-            one_user.liked_books.add (book_id)
+    #specify book
+    one_user = User.objects.get(id=request.session['userid'])
+    one_user.liked_books.add (book_id)
     return redirect(f"/books/{book_id}")
 
 def unfavorite_book(request, book_id):
-    if request.method=="POST":
-            one_user = User.objects.get(id=request.session['userid'])
-            one_user.liked_books.remove (book_id)
+    one_user = User.objects.get(id=request.session['userid'])
+    one_user.liked_books.remove (book_id)
     return redirect(f"/books/{book_id}")
 
 def delete_book(request, book_id):

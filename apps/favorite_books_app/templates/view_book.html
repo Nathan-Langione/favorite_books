@@ -38,16 +38,10 @@
                     {% endfor %}
                 </ul>
                 </div>
-                {% if this_user.id not in fav_users.id %}
-                <form action="/books/{{this_book.id}}/favorite" method="post">
-                    {% csrf_token %}
-                    <button type="submit">Favorite</button>
-                </form>
+                {% if this_user  in fav_users %}
+                <a href="/books/{{this_book.id}}/unfavorite" role="button" class="btn btn-danger">Remove From Favorites</a>
                 {% else %}
-                <form action="/books/{{this_book.id}}/unfavorite" method="post">
-                    {% csrf_token %}
-                    <button type="submit">un-Favorite</button>
-                </form>
+                <a href="/books/{{this_book.id}}/favorite" role="button" class="btn btn-warning">Add to Favorites</a>
                 {% endif %}
             </div>
     </body>
